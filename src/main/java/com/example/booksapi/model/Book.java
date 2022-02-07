@@ -1,9 +1,12 @@
 package com.example.booksapi.model;
 
+import javax.persistence.Id;
+import javax.persistence.Entity;
 import java.util.ArrayList;
 import java.util.List;
-
+@Entity
 public class Book {
+    @Id
 private Long uuid;
 private String name;
 private List<String> commentaires = new ArrayList<>();
