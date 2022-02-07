@@ -1,16 +1,18 @@
 package com.example.booksapi.model;
 
-import javax.persistence.Id;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import java.util.ArrayList;
+import javax.persistence.*;
 import java.util.List;
+
 @Entity
+@Table(name = "books")
 public class Book {
     @Id
 private Long uuid;
-private String name;
+    @Column(name = "name")
+    private String name;
 @OneToMany
+@Column(name = "commentaires")
+
 private List<Commentaire> commentaires;
 
     public List<Commentaire> getCommentaires() {
