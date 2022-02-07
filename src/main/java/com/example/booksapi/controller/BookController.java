@@ -22,9 +22,10 @@ public class BookController {
         br.findAll().forEach(livre -> livres.add(livre));
         return livres;
     }
-@PostMapping("/books")
-    public void addBook(Book book){
+    @PostMapping("/books")
+    public String addBook(@RequestBody Book book){
         br.save(book);
+        return "Book saved";
 }
     @DeleteMapping("/books/{id}")
     private void deleteStudent(@PathVariable("id") int id)

@@ -1,36 +1,23 @@
 package com.example.booksapi.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
+@Builder
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Commentaire {
     @Id
-    private Long id;
+    private int id;
     private String message;
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
 
-    @Override
-    public String toString() {
-        return "Commentaire{" +
-                "id=" + id +
-                ", message='" + message + '\'' +
-                '}';
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-
-    public Long getId() {
-        return id;
-    }
 }
