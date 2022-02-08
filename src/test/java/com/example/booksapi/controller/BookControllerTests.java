@@ -25,6 +25,11 @@ public class BookControllerTests {
     @MockBean BookRepository bookrepository;
     @Test
     void getBooksTest(){
+        List<Commentaire> commentaires = new ArrayList<>();
+        commentaires.add(new Commentaire(10,"really good reading"));
+        when(bookrepository.findAll()).thenReturn((List<Book>) Stream.of(
+                new Book(1,"la boite a merveilles",commentaires )));
+        assertEquals(1,bookcontroller.getBooks().size());
 
     }
 //Test pour enregistrer un livre

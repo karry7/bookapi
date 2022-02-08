@@ -19,9 +19,8 @@ public class BookController {
     private BookService bookservice;
 
     @GetMapping("/books")
-    public String getBooks(){
-        bookservice.getBooks();
-        return "Books returned";
+        public List<Book> getBooks(){
+      return  bookservice.getBooks();
         }
 
     @PostMapping("/books")
