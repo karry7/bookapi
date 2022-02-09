@@ -12,31 +12,31 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Controller
+@RestController
 public class BookController {
 
     @Autowired
     private BookService bookservice;
 
     @GetMapping("/books")
-        public List<Book> getBooks(){
-      return  bookservice.getBooks();
-        }
+    public List<Book> getBooks() {
+        return bookservice.getBooks();
+    }
 
     @PostMapping("/books")
-    public String addBook(@RequestBody Book book){
-       bookservice.addBook(book);
-        return "book added";
-    }
-    @DeleteMapping("/books/{id}")
-    public void deleteStudent(@PathVariable int id)
-    {
-     bookservice.deleteBook(id);
-      }
+    public Book addBook(@RequestBody Book book) {
+        return bookservice.addBook(book);
 
-      @PutMapping("/books/{id}")
-public String updateEmployee(@RequestBody Book bookupdated,@PathVariable int id){
-     bookservice.updateBook(bookupdated,id);
-     return "Book Updated";
+    }
+
+    @DeleteMapping("/books/{id}")
+    public void deleteStudent(@PathVariable Integer id) {
+        bookservice.deleteBook(id);
+    }
+
+    @PutMapping("/books/{id}")
+    public String updateEmployee(@RequestBody Book bookupdated, @PathVariable Integer id) {
+        bookservice.updateBook(bookupdated, id);
+        return "Book Updated";
     }
 }

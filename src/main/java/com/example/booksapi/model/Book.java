@@ -12,13 +12,11 @@ import java.util.List;
 @Data
 public class Book {
     @Id
-private int uuid;
+    private int uuid;
     private String name;
 
-@OneToMany
-private List<Commentaire> commentaires;
-
-
+    @OneToMany(fetch=FetchType.EAGER,cascade = CascadeType.ALL)
+    private List<Commentaire> commentaires;
 
 
 }
