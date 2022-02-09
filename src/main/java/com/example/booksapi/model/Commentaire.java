@@ -16,7 +16,7 @@ import javax.persistence.Id;
 @NoArgsConstructor
 public class Commentaire {
     @Id
-    private int id;
+    private Integer id;
     private String message;
 
 
