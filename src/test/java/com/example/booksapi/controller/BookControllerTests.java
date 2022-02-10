@@ -50,14 +50,14 @@ public class BookControllerTests {
     @Test
     void getBooksTest() {
         //given
-        List<Commentaire> commentaires = List.of(new Commentaire(10, "really good reading"));
+        /*List<Commentaire> commentaires = List.of(new Commentaire(10, "really good reading"));
 
         Book book1 = new Book(9, "Red Book", commentaires);
 
         //given
         List<Commentaire> commentaires2 = List.of(new Commentaire(20, "bad book"));
 
-        Book book2 = new Book(9, "Blue Book", commentaires);
+        Book book2 = new Book(9, "Blue Book", commentaires);*/
 
 
     }
