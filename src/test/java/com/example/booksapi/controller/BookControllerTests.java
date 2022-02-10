@@ -12,11 +12,14 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 
+import static org.mockito.ArgumentMatchers.contains;
+import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.when;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(controllers = BookController.class)
 public class BookControllerTests {
@@ -48,16 +51,25 @@ public class BookControllerTests {
     }
 
     @Test
-    void getBooksTest() {
+    void getBooksTest() throws Exception {
         //given
-        /*List<Commentaire> commentaires = List.of(new Commentaire(10, "really good reading"));
+        List<Commentaire> commentaires = List.of(new Commentaire(10, "really good reading"));
 
         Book book1 = new Book(9, "Red Book", commentaires);
 
-        //given
         List<Commentaire> commentaires2 = List.of(new Commentaire(20, "bad book"));
 
-        Book book2 = new Book(9, "Blue Book", commentaires);*/
+        Book book2 = new Book(9, "Blue Book", commentaires);
+        bookservice.addBook(book1);
+        bookservice.addBook(book2);
+        List<Book> books=List.of(book1,book2);
+        when(bookservice.getBooks()).thenReturn(books);
+        mockMvc.perform(get("/books"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json"))
+                .andExpect(jsonPath("$[1].uuid").value(equals(1)));
+
 
 
     }
