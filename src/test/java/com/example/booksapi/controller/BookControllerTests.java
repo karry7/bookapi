@@ -56,7 +56,7 @@ public class BookControllerTests {
 
         List<Commentaire> commentaires2 = List.of(new Commentaire(20, "bad book"));
 
-        Book book2 = new Book(9, "Blue Book", commentaires);
+        Book book2 = new Book(9, "Blue Book", commentaires2);
         bookservice.addBook(book1);
         bookservice.addBook(book2);
         List<Book> books=List.of(book1,book2);
@@ -80,6 +80,21 @@ public class BookControllerTests {
     bookservice.addBook(book1);
     when(bookservice.deleteBook(book1.getUuid())).thenReturn("Book Deleted");
     mockMvc.perform(delete("/books/9"))
+            .andExpect(status().isOk());
+
+}
+
+@Test
+    void updateBookTest() throws Exception{
+    List<Commentaire> commentaires = List.of(new Commentaire(10, "really good reading"));
+
+    Book book1 = new Book(9, "Red Book", commentaires);
+    Book updatebook= new Book(10,"Pink Book",commentaires);
+
+    mockMvc.perform(put("/books/9")
+            .contentType(APPLICATION_JSON)
+
+            .content(mapper.writeValueAsString(updatebook)))
             .andExpect(status().isOk());
 
 }

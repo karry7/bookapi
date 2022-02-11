@@ -30,7 +30,7 @@ public class BookServiceImplementation implements BookService {
     }
 
     @Override
-    public void updateBook(Book book, int id) {
+    public Book updateBook(Book book, int id) {
         bookrepository.findById(id)
                 .map(b -> {
                     b.setUuid(book.getUuid());
@@ -42,6 +42,7 @@ public class BookServiceImplementation implements BookService {
                     book.setUuid(id);
                     return bookrepository.save(book);
                 });
+        return book;
     }
 
     @Override

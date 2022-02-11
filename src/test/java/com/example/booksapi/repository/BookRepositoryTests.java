@@ -64,7 +64,6 @@ class BookRepositoryTests {
 
         bookrepository.deleteById(book2.getUuid());
         List<Book> books = bookrepository.findAll();
-
         assertThat(books.size()).isEqualTo(1);
     }
 }
