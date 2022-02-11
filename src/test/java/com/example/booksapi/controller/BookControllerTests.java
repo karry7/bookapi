@@ -12,11 +12,9 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.Mockito.when;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -72,5 +70,17 @@ public class BookControllerTests {
 
 
     }
+@Test
+    void deleteBookTest() throws Exception{
 
+        //given
+    List<Commentaire> commentaires = List.of(new Commentaire(10, "really good reading"));
+
+    Book book1 = new Book(9, "Red Book", commentaires);
+    bookservice.addBook(book1);
+    when(bookservice.deleteBook(book1.getUuid())).thenReturn("Book Deleted");
+    mockMvc.perform(delete("/books/9"))
+            .andExpect(status().isOk());
+
+}
 }

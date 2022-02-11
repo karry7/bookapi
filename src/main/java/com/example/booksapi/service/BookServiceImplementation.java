@@ -2,13 +2,14 @@ package com.example.booksapi.service;
 
 import com.example.booksapi.model.Book;
 import com.example.booksapi.repository.BookRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class BookServiceImplementation implements BookService {
-
+    @Autowired
     private BookRepository bookrepository;
 
     public BookServiceImplementation(BookRepository bookrepository) {
@@ -44,8 +45,9 @@ public class BookServiceImplementation implements BookService {
     }
 
     @Override
-    public void deleteBook(int id) {
+    public String deleteBook(int id) {
         bookrepository.deleteById(id);
+        return "Book Deleted";
     }
 
 
