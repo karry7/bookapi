@@ -72,6 +72,16 @@ public class BookServiceTests {
 
 
     }
+    @Test
+    void updateBook(){
+        //given
+        var commentaires1 = List.of(new Commentaire(1, "Great Book,i advice people to read it"));
 
+        var book1 = new Book(1, "Black Book", commentaires1);
+        var bookupdate=new Book(2,"White book",commentaires1);
+
+        //then
+        assertThat(bookService.updateBook(bookupdate,book1.getUuid())).isEqualTo(bookupdate);
+    }
 
 }
